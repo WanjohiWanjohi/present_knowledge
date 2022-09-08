@@ -4,6 +4,7 @@ require 'pry'
 
 class JumiaScraper
     attr_accessor :urls
+    vendor = "Jumia"
     DOMAIN_NAME = 'https://www.jumia.co.ke'
     
     def get_page
@@ -24,13 +25,18 @@ class JumiaScraper
         get_categories.each do | category|
             category_name = category[0].to_s
             category_url = construct_url(category[1].to_s)
-            parse_category_products(url, category_name)
-            binding.pry
+            parse_category_products(category_url, category_name)
         end
     end
 
     def parse_category_products(url, category_name)
+        page = Nokogiri::HTML(open(url))
+        product_cards = page.css(".aim .card .core")
+        product_cards.each do |product_card|
+            binding.pry
 
+        end
+   
     end
 
     def construct_url(url)
