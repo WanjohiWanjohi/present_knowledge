@@ -1,6 +1,7 @@
 require 'nokogiri'
 require 'open-uri'
 require 'pry'
+# require_relative '../app/models/product'
 
 class JumiaScraper
     attr_accessor :urls
@@ -31,18 +32,48 @@ class JumiaScraper
 
     def parse_category_products(url, category_name)
         page = Nokogiri::HTML(open(url))
+        total_products = page.css()
         product_cards = page.css(".aim .card .core")
         product_cards.each do |product_card|
+            href = product_card.attributes['href'].value
+            categories = product_card.attributes['data-category'].value
+            # # # TODO: Split categories using the /
+            product_id = product_card.attributes['data-id'].value
+            ##TODO: Convert product_id to string so we can store guids 
+
+            product_image_section  = product_card.css('.img-c')
+            image_url = parse_product_image(product_image_section)
+            
+            product_info_section = product_card.css('.info')
+            product_info = parse_product_info(product_info_section)
+
+            #TODO: add to product_details (add to cart link)
+            # TODO: add to product brand
+            prod = Product.new(product_name:product_info[:name] , description:"", vendor:self.vendor, product_url:href , product_image_url:image_url)
             binding.pry
 
         end
-   
     end
-
+    
+    def parse_product_image(html_section)
+        html_section.children.attribute('data-src').value
+    end
+    
+    def parse_product_info(html_section)
+        
+        product_info = {}
+        product_info[:name] = html_section.children.children[1]
+        product_info[:price_effective] = html_section.children.children[2]
+        product_info[:price_full] = html_section.children.children[3].children[0].to_s
+        return product_info
+    end
+    
+    
     def construct_url(url)
         if url.start_with?("https")
             return url
-        else
+        elsif url.start_with?("/")
+                url[0] = ''
             return DOMAIN_NAME + url
         end
     end
