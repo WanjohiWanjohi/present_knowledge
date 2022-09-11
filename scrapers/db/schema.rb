@@ -10,17 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_08_105242) do
-  create_table "product_details", force: :cascade do |t|
+ActiveRecord::Schema[7.0].define(version: 2022_09_11_194324) do
+  create_table "product_details", primary_key: "detail_id", id: :string, force: :cascade do |t|
     t.string "categories"
     t.integer "price_effective"
     t.integer "price_full"
     t.integer "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["detail_id"], name: "index_product_details_on_detail_id"
+    t.index ["product_id"], name: "index_product_details_on_product_id"
   end
 
-  create_table "products", force: :cascade do |t|
+  create_table "products", primary_key: "product_id", id: :string, force: :cascade do |t|
     t.string "product_name"
     t.string "product_description"
     t.string "vendor"
@@ -28,14 +30,20 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_08_105242) do
     t.string "product_image_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "registry_id"
+    t.string "brand"
+    t.index ["product_id"], name: "index_products_on_product_id"
+    t.index ["registry_id"], name: "index_products_on_registry_id"
   end
 
-  create_table "registries", force: :cascade do |t|
+  create_table "registries", primary_key: "registry_id", id: :string, force: :cascade do |t|
     t.integer "name"
     t.string "event"
-    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.index ["registry_id"], name: "index_registries_on_registry_id"
+    t.index ["user_id"], name: "index_registries_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -45,4 +53,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_08_105242) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "product_details", "products"
+  add_foreign_key "products", "registries"
+  add_foreign_key "registries", "users"
 end

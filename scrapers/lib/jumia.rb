@@ -1,12 +1,12 @@
 require 'nokogiri'
 require 'open-uri'
 require 'pry'
-# require_relative '../app/models/product'
 
-class JumiaScraper
+class JumiaScraper 
     attr_accessor :urls
+    
     vendor = "Jumia"
-    DOMAIN_NAME = 'https://www.jumia.co.ke'
+    DOMAIN_NAME = 'https://www.jumia.co.ke/'
     
     def get_page
         page = Nokogiri::HTML(open(DOMAIN_NAME))
@@ -26,20 +26,29 @@ class JumiaScraper
         get_categories.each do | category|
             category_name = category[0].to_s
             category_url = construct_url(category[1].to_s)
-            parse_category_products(category_url, category_name)
+            get_pages(category_url, category_name)
+        end
+    end
+
+    def get_pages(page_url, category_name)
+        page = Nokogiri::HTML(open(page_url))
+        next_page_element = page.xpath("//a[contains(@aria-label, 'Next Page')]")
+        next_page_url = next_page_element.attribute('href').value
+        if !next_page_url.nil?
+            next_page_url  = construct_url(next_page_url)
+            parse_category_products(next_page_url, category_name)
         end
     end
 
     def parse_category_products(url, category_name)
+        
         page = Nokogiri::HTML(open(url))
-        total_products = page.css()
         product_cards = page.css(".aim .card .core")
         product_cards.each do |product_card|
             href = product_card.attributes['href'].value
             categories = product_card.attributes['data-category'].value
             # # # TODO: Split categories using the /
             product_id = product_card.attributes['data-id'].value
-            ##TODO: Convert product_id to string so we can store guids 
 
             product_image_section  = product_card.css('.img-c')
             image_url = parse_product_image(product_image_section)
@@ -47,10 +56,10 @@ class JumiaScraper
             product_info_section = product_card.css('.info')
             product_info = parse_product_info(product_info_section)
 
-            #TODO: add to product_details (add to cart link)
-            # TODO: add to product brand
-            prod = Product.new(product_name:product_info[:name] , description:"", vendor:self.vendor, product_url:href , product_image_url:image_url)
-            binding.pry
+            #TODO: add to product_details (add to cart link)cd
+            # product = {}
+            product = Product.new
+            prod = prod.create(product_id:product_info[:name], product_name:product_info[:name])
 
         end
     end
@@ -79,5 +88,5 @@ class JumiaScraper
     end
 end
 
-jum = JumiaScraper.new()
+jum = JumiaScraper.new
 jum.get_category_urls
