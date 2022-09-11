@@ -29,7 +29,7 @@ export default function Home() {
                 </MDBNavbarLink>
               </MDBNavbarItem>
               <MDBNavbarItem>
-                <MDBNavbarLink href='#'>Features</MDBNavbarLink>
+                <MDBNavbarLink href='#'>Register</MDBNavbarLink>
               </MDBNavbarItem>
               <MDBNavbarItem>
                 <MDBNavbarLink href='#'>Pricing</MDBNavbarLink>
@@ -46,7 +46,7 @@ export default function Home() {
         <h1 className='mb-3'>Heading</h1>
         <h4 className='mb-3'>Subheading</h4>
         <a className='btn btn-primary' href='' role='button'>
-          Call to action
+          View Registries
         </a>
       </div>
     </header>
