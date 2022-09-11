@@ -1,9 +1,13 @@
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import NavBar from './NavBar'
 
 function Register() {
   return (
-    <Form>
+    <>
+        <NavBar />
+
+        <Form>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Register Name</Form.Label>
         <Form.Control type="text" placeholder="Register name" />
@@ -21,6 +25,8 @@ function Register() {
         Submit
       </Button>
     </Form>
+    </>
+    
   );
 }
 

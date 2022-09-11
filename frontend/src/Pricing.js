@@ -3,7 +3,7 @@ import NavBar from './NavBar'
 
 export default function Home() {
   return (
-    <header style={{ paddingLeft: 0 }}>
+    <header style={{ paddingLeft: 0 ,marginBottom:5 }}>
      <NavBar/>
       <div className='p-5 text-center bg-light'>
         <h1 className='mb-3'>Heading</h1>

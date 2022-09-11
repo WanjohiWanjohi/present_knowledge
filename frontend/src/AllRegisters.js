@@ -1,7 +1,10 @@
 import Table from 'react-bootstrap/Table';
-
-function RegisterDetails() {
+import NavBar from './NavBar';
+function AllRegisters() {
   return (
+    <>
+         <NavBar/>
+
     <Table striped bordered hover variant="dark">
       <thead>
         <tr>
@@ -21,7 +24,8 @@ function RegisterDetails() {
        
       </tbody>
     </Table>
+    </>
   );
 }
 
-export default RegisterDetails;
+export default AllRegisters;

@@ -3,6 +3,8 @@ import "./App.css"
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import Auth from "./Auth"
 import Home from "./Home"
+import Register from "./Register"
+import AllRegisters from "./AllRegisters"
 import React, { useState, useEffect } from "react"
 
 
@@ -18,10 +20,12 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+      <Route exact path="/register" element={<Register />}/>
+      <Route exact path="/registers" element={<AllRegisters />}/>
+
 <Route path="/" element={token.length > 0 ?<Navigate to="/home" />: <Auth  setToken={setToken}/>} />
-<Route exact path="/home" element={<Home />}>
- 
-</Route>
+<Route exact path="/home" element={<Home />}></Route>
+
       </Routes>
     </BrowserRouter>
   )
