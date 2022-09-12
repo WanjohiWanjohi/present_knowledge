@@ -6,6 +6,7 @@ import Home from "./Home"
 import Register from "./Register"
 import AllRegisters from "./AllRegisters"
 import React, { useState, useEffect } from "react"
+import Pricing from "./Pricing"
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
 
 <Route path="/" element={token.length > 0 ?<Navigate to="/home" />: <Auth  setToken={setToken}/>} />
 <Route exact path="/home" element={<Home />}></Route>
+<Route exact path="/pricing" element={<Pricing />}></Route>
 
       </Routes>
     </BrowserRouter>

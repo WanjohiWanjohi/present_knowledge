@@ -31,7 +31,7 @@ import {
             <MDBNavbarLink href='/register'>Register</MDBNavbarLink>
           </MDBNavbarItem>
           <MDBNavbarItem>
-            <MDBNavbarLink href='#'>Pricing</MDBNavbarLink>
+            <MDBNavbarLink href='/pricing'>Pricing</MDBNavbarLink>
           </MDBNavbarItem>
           <MDBNavbarItem>
             <MDBNavbarLink href='#'>About</MDBNavbarLink>
