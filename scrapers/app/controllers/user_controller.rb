@@ -11,6 +11,9 @@ class UserController < Sinatra::Base
         user = User.find(params[:id])
         user.to_json(include: { registries: { include: :products } })
     end
-    
+    post "/users/new" do
+      request.body.rewind  
+      data = JSON.parse request.body.read
+    end
 end
   

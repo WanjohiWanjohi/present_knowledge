@@ -7,7 +7,11 @@ class JumiaScraper
     
     vendor = "Jumia"
     DOMAIN_NAME = 'https://www.jumia.co.ke/'
-    
+    def product_details
+        @product_details
+    end
+    def product_details=()
+    end
     def get_page
         page = Nokogiri::HTML(open(DOMAIN_NAME))
     end
@@ -23,7 +27,7 @@ class JumiaScraper
     end
 
     def get_category_urls
-        get_categories.each do | category|
+        get_categories().each do | category|
             category_name = category[0].to_s
             category_url = construct_url(category[1].to_s)
             

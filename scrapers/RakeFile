@@ -24,6 +24,7 @@ task :scrape_kilimall do
   jum = JumiaScraper.new
 
   jum.get_category_urls.each do |products|
+    binding.pry
     prod_details = ProductDetail.new()
     Product.create(product_id: products[1].to_s, product_name: products[1].to_s)
   end

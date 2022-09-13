@@ -11,7 +11,6 @@ class ProductsController < Sinatra::Base
         product = Product.find(params[:product_id])
         product.to_json
     end
-    def create
-    end
+   
 end
   
