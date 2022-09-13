@@ -8,15 +8,23 @@ task :console do
   # Open a Pry session
   Pry.start
 end
-task :scrape do
+task :scrape_jumia do
   require_relative './lib/jumia'
   require 'pry'
   jum = JumiaScraper.new
 
   jum.get_category_urls.each do |products|
     prod_details = ProductDetail.new()
-    prod = Product.new()
-    binding.pry
-    prod.createproduct({:product_id =>products[:name], :product_name=>products[:name]})
+    Product.create(product_id: products[1].to_s, product_name: products[1].to_s)
+  end
+end
+task :scrape_kilimall do
+  require_relative './lib/jumia'
+  require 'pry'
+  jum = JumiaScraper.new
+
+  jum.get_category_urls.each do |products|
+    prod_details = ProductDetail.new()
+    Product.create(product_id: products[1].to_s, product_name: products[1].to_s)
   end
 end
