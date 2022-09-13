@@ -11,5 +11,6 @@ class UserController < Sinatra::Base
         user = User.find(params[:id])
         user.to_json(include: { registries: { include: :products } })
     end
+    
 end
   
