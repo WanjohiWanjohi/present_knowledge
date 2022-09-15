@@ -12,4 +12,8 @@ gem "nokogiri"
 gem 'sinatra'
 gem 'thin'
 gem "capistrano"
+gem "capistrano-bundler"
+gem 'sinatra-cors'
+gem "capistrano-passenger"
+gem 'sinatra-cross_origin'
 # gem "pg"

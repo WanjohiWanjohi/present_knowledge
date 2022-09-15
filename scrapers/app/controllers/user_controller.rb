@@ -1,11 +1,14 @@
 require 'sinatra/base'
+require "sinatra"
+require "sinatra/cors"
+
 class UserController < Sinatra::Base
 
   configure do
       enable :cross_origin
 
       set :allow_origin, "*" # allows any origin(domain) to send fetch requests to your API
-      set :allow_methods, [:get, :post, :patch, :delete, :options] # allows these HTTP verbs
+      set :allow_methods,  "GET,HEAD,POST"
       set :allow_credentials, true
       set :max_age, 1728000
       set :expose_headers, ['Content-Type']
