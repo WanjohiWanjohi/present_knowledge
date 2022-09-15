@@ -115,6 +115,6 @@ export default function  Auth(props) {
   function handleLogin(event){
     event.preventDefault()
     setPassword(event.target.password.text)
-    console.log(event.target.password.text)
+    fetch()
   }
 }
