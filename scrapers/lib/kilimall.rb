@@ -20,7 +20,7 @@ class KilimallScraper
         category_urls = page_content.xpath("//div[contains(@class, 'memo_div')]//div[contains(@class, 'content')]//a/@href").each do |url|
             category_urls_list << url.value.to_s
         end
-        category_urls_list.each do |cat_url|
+        category_urls_list.map do |cat_url|
             full_url = construct_url(cat_url)
             parse_category_products(full_url)
         end
@@ -31,24 +31,19 @@ class KilimallScraper
         category_content = Nokogiri::HTML(open(url))
 
         product_card  = category_content.xpath("//div[contains(@class, 'el-col-6')]")
-        product_card.each do |prod|
-            product_href = prod.xpath("//a/@href")
+        binding.pry
+        product_card.map do |prod|
+            product_href = prod.at_xpath("//a/@href").to_s
             product_item[:product_href] = construct_url(product_href)
-            product_item[:price_effective] = prod.xpath("//div[contains(@class, 'wordwrap-price')]/span[1]/text()")
-            product_item[:price_full] = prod.xpath("//div[contains(@class, 'wordwrap-price')]/span[2]/text()")
-            product_item[:product_image] = prod.xpath("//a//img/@src")
-            product_item[:product_name] = prod.xpath("//a//img/@alt")
-            return product_item
+            product_item[:price_effective] = prod.at_xpath("//div[contains(@class, 'wordwrap-price')]/span[1]/text()").to_s
+            product_item[:price_full] = prod.at_xpath("//div[contains(@class, 'wordwrap-price')]/span[2]/text()")
+            product_item[:product_image] = prod.at_xpath("//a//img/@src")
+            product_item[:product_name] = prod.at_xpath("//a//img/@alt")
+            product_item
         end
+#TODO: Add pagination
+    end
 
-    end
-    
-    def parse_product_image
-    end
-    
-    def parse_product_info
-    end
-    
     
     def construct_url(url)
         if url.start_with?("/new/")

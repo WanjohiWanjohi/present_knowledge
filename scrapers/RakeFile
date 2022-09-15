@@ -11,12 +11,26 @@ end
 task :scrape_jumia do
   require_relative './lib/jumia'
   require 'pry'
+  require 'securerandom'
   jum = JumiaScraper.new
-  binding.pry
-  jum.get_category_urls.each do |products|
-    prod_details = ProductDetail.new()
-    Product.create(product_id: products[1].to_s, product_name: products[1].to_s)
+  jum.get_categories
+  jum.get_category_urls
+  jum.product_details.each do |product|
+    price_effective = product[:price_effective].to_s.scan(/\d/).join('')
+    price_full = product[:price_full].to_s.scan(/\d/).join('')
+
+    ProductDetail.create(detail_id:SecureRandom.uuid.to_s, 
+                         categories:product[:categories], 
+                        price_effective:price_effective)
+    # TODO: Add a buy column on each product with the url to purchase
+    Product.create(product_id: product[:product_id].to_s,
+                   product_name: product[:name].to_s, 
+                   vendor:"Jumia", 
+                   product_image_url: product[:image_url].to_s,
+                   product_url: product[:href].to_s
+                   )
   end
+
 end
 task :scrape_kilimall do
   require_relative './lib/kilimall'
