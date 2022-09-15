@@ -34,6 +34,9 @@ import {
             <MDBNavbarLink href='/pricing'>Pricing</MDBNavbarLink>
           </MDBNavbarItem>
           <MDBNavbarItem>
+            <MDBNavbarLink href='/products'>Products</MDBNavbarLink>
+          </MDBNavbarItem>
+          <MDBNavbarItem>
             <MDBNavbarLink href='#'>About</MDBNavbarLink>
           </MDBNavbarItem>
         </MDBNavbarNav>
