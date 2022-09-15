@@ -11,22 +11,23 @@ class RegistryController < Sinatra::Base
     set :allow_headers, "X-Requested-With, X-HTTP-Method-Override, Content-Type, Cache-Control, Accept, if-modified-since"
     set :expose_headers, "location,link"
     
-    get '/registry/:id' do
+    get '/registry' do
       products = Product.all.order(:title)
-      products.to_json
+      body products.to_json
     end
 
-    get '/registries' do
+    get '/registries/:id' do
         product = Product.find(params[:product_id])
-        product.to_json
+        body product.to_json
     end
 
     post '/registries/create' do 
       request.body.rewind  
       data = JSON.parse request.body.read
       puts data.values
-      id = data[:registryName].to_s + data[:registryEvent].to_s + Time.new.to_s
-      Registry.create(id:id ,name: data[:registryName].to_s, event: data[:registryEvent].to_s)
+      #TODO:FIx this
+      id = data[:registryName].to_s + data[:registryEvent].to_s 
+      Registry.create(id: id ,name: data[:registryName], event: data[:registryEvent])
     end
    
 end
