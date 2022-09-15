@@ -3,7 +3,7 @@ require 'open-uri'
 require 'pry'
 # require_relative '../app/models/product'
 
-class JumiaScraper
+class SkyGardenScraper
     attr_accessor :urls
     vendor = "Sky Garden"
     DOMAIN_NAME = 'https://sky.garden/home'

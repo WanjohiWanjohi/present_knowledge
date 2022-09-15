@@ -1,28 +1,15 @@
 # frozen_string_literal: true
-
 source "https://rubygems.org"
-group :development do
 gem "pry"
 gem "rails"
 gem 'sqlite3'
 gem 'rake'
+gem 'rack'
 gem 'require_all'
 gem 'activerecord'
 gem 'sinatra-activerecord'
 gem "nokogiri"
-
-end
 gem 'sinatra'
 gem 'thin'
 gem "capistrano"
-
-group :production do
-  gem "pg"
-  gem "rails"
-  gem 'rake'
-gem 'require_all'
-gem 'activerecord'
-gem 'sinatra-activerecord'
-gem "nokogiri"
-
-end
+# gem "pg"

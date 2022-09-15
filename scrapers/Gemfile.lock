@@ -194,6 +194,7 @@ DEPENDENCIES
   capistrano
   nokogiri
   pry
+  rack
   rails
   rake
   require_all
