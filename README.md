@@ -17,5 +17,4 @@ A user should be able to :
 - Add products in catalog to gift registry with redirect links
 - Share link to the registry 
 
-You can use the application from [here](https://github.com/) 
 The backend APIs are hosted [here](https://github.com/)
