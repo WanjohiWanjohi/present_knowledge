@@ -16,5 +16,5 @@ A user should be able to :
 - Each registry has a date , a user , an event type and products
 - Add products in catalog to gift registry with redirect links
 - Share link to the registry 
-You can view the app [here](https://present-knowledge.web.app)
+You can view the app [here](https://presentknowledge.web.app/home)
 The backend APIs are hosted [here](https://github.com/)
