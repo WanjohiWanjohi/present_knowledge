@@ -21,7 +21,6 @@ gem 'sinatra-cross_origin'
 end
 
 group :production  do 
-gem "pry"
 gem "rails"
 gem 'rake'
 gem 'rack'

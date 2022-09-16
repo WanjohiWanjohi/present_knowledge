@@ -9,7 +9,6 @@ class UserController < Sinatra::Base
 
       set :allow_origin, "*" # allows any origin(domain) to send fetch requests to your API
       set :allow_methods,  "GET,HEAD,POST"
-      set :allow_credentials, true
       set :max_age, 1728000
       set :expose_headers, ['Content-Type']
   end
