@@ -30,14 +30,15 @@ import {
           <MDBNavbarItem>
             <MDBNavbarLink href='/register'>Register</MDBNavbarLink>
           </MDBNavbarItem>
-          <MDBNavbarItem>
-            <MDBNavbarLink href='/pricing'>Pricing</MDBNavbarLink>
-          </MDBNavbarItem>
+         
           <MDBNavbarItem>
             <MDBNavbarLink href='/products'>Products</MDBNavbarLink>
           </MDBNavbarItem>
           <MDBNavbarItem>
-            <MDBNavbarLink href='#'>About</MDBNavbarLink>
+            <MDBNavbarLink href='/about'>About</MDBNavbarLink>
+          </MDBNavbarItem>
+          <MDBNavbarItem>
+            <MDBNavbarLink href='/pricing'>Pricing</MDBNavbarLink>
           </MDBNavbarItem>
         </MDBNavbarNav>
       </div>

@@ -9,7 +9,7 @@ import React, { useState, useEffect } from "react"
 import Pricing from "./Pricing"
 import RegisterDetails from "./RegisterDetails"
 import ProductList from "./ProductList"
-
+import About from "./About"
 
 function App() {
   let tokenKey ='gfvdsc'
@@ -31,6 +31,7 @@ function App() {
 <Route exact path="/pricing" element={<Pricing />}></Route>
 <Route exact path="/register/details" element={<RegisterDetails />}></Route>
 <Route exact path="/products" element={<ProductList />}></Route>
+<Route exact path="/about" element={<About />}></Route>
 
       </Routes>
     </BrowserRouter>
