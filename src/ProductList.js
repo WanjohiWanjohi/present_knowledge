@@ -7,9 +7,18 @@ import React, { useState ,useEffect} from 'react';
 import Form from 'react-bootstrap/Form';
 
 function ProductList() {
+  const [allProducts, setAllProducts] = useState([]);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+ useEffect(() => {   
+    fetch("https://present-knowledge.herokuapp.com/products")
+    .then((res) => res.json())
+    .then((products) => {    
+      console.log(products)
+      setAllProducts(products)
+    }) }, []);
+
   return (
 
     <>
