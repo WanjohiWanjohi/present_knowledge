@@ -23,7 +23,7 @@ class UserController < Sinatra::Base
     # set :default_content_type, 'application/json'
 
     get '/hello'do
-    puts "Hello World!"
+     "Hello World!"
     end
 
     get '/users' do
