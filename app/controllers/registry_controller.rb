@@ -12,29 +12,31 @@ class RegistryController < Sinatra::Base
     set :expose_headers, "location,link"
     
     get '/registry' do
-      products = Product.all.order(:title)
+      products = Registry.all.order(:title)
       body products.to_json
     end
 
     get '/registries/:id' do
-        product = Product.find(params[:product_id])
+        product = Registry.find(params[:id]).includes(:registry_item).includes(:product)
         body product.to_json
     end
 
     post '/registries/create' do 
       request.body.rewind  
       data = JSON.parse request.body.read
-      puts data.values
       #TODO:FIx this
       id = data[:registryName].to_s + data[:registryEvent].to_s 
-      Registry.create(id: id ,name: data[:registryName], event: data[:registryEvent])
+      r = Registry.create(id: id ,name: data[:registryName], event: data[:registryEvent])
+      body r
     end
-    post '/registries/add/:id'do
-    request.body.rewind  
-    data = JSON.parse request.body.read
-    
-    
+    post '/registries/add_product'do
+      request.body.rewind  
+      data = JSON.parse request.body.read
+      r = RegistryItem.create(data)
+      body r
     end
-   
+    delete '/registries/delete/:id' do
+      Registry.find(params[:id]).destroy
+    end
 end
   
