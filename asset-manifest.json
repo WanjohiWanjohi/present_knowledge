@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/%20//WanjohiWanjohi.github.io/present_knowledge/static/css/main.7318a2d9.css",
-    "main.js": "/%20//WanjohiWanjohi.github.io/present_knowledge/static/js/main.3838c25d.js",
-    "static/js/787.cda612ba.chunk.js": "/%20//WanjohiWanjohi.github.io/present_knowledge/static/js/787.cda612ba.chunk.js",
-    "index.html": "/%20//WanjohiWanjohi.github.io/present_knowledge/index.html",
-    "main.7318a2d9.css.map": "/%20//WanjohiWanjohi.github.io/present_knowledge/static/css/main.7318a2d9.css.map",
-    "main.3838c25d.js.map": "/%20//WanjohiWanjohi.github.io/present_knowledge/static/js/main.3838c25d.js.map",
-    "787.cda612ba.chunk.js.map": "/%20//WanjohiWanjohi.github.io/present_knowledge/static/js/787.cda612ba.chunk.js.map"
+    "main.css": "/present_knowledge/static/css/main.7318a2d9.css",
+    "main.js": "/present_knowledge/static/js/main.65a3fa0d.js",
+    "static/js/787.cda612ba.chunk.js": "/present_knowledge/static/js/787.cda612ba.chunk.js",
+    "index.html": "/present_knowledge/index.html",
+    "main.7318a2d9.css.map": "/present_knowledge/static/css/main.7318a2d9.css.map",
+    "main.65a3fa0d.js.map": "/present_knowledge/static/js/main.65a3fa0d.js.map",
+    "787.cda612ba.chunk.js.map": "/present_knowledge/static/js/787.cda612ba.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7318a2d9.css",
-    "static/js/main.3838c25d.js"
+    "static/js/main.65a3fa0d.js"
   ]
 }
