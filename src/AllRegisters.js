@@ -2,8 +2,17 @@ import Table from 'react-bootstrap/Table';
 import NavBar from './NavBar';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom'
-import {useEffect} from 'react';
+import {useEffect, useState} from 'react';
 function AllRegisters(props) {
+  const [registers, setAllRegisters] = useState([])
+
+  useEffect(() => {   
+    fetch("https://present-knowledge.herokuapp.com/registries")
+    .then((res) => res.json())
+    .then((reg) => {    
+      console.log(reg)
+      setAllRegisters(reg)
+    }) }, []);
   return (
     <>
          <NavBar/>

@@ -40,7 +40,7 @@ function Register() {
     console.log(registryName)
     if (registryEvent !== null && registryName !== null && registryName !== '' && registryEvent !== ''){
         // TODO: Make fetcgh
-        fetch("http://localhost:9292/registries/create",{
+        fetch("https://present-knowledge.herokuapp.com/registries/create",{
           method: 'POST',
           redirect:'follow',
           body: JSON.stringify({registryName: registryName, registryEvent: registryEvent})} ).then((res)=> res.json()).then((registry)=> console.log(registry))

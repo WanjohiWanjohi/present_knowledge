@@ -8,7 +8,8 @@ import Card from 'react-bootstrap/Card';
 
 export default function Pricing() {
   const [pricingData , setPricingData] = useState([])
-  const getData=()=>{
+
+  useEffect(()=>{
 
     fetch('pricing.json',{
       headers : { 
@@ -27,14 +28,7 @@ export default function Pricing() {
         console.log(pricingData);
 
       });
-
-  }
-
-  useEffect(()=>{
-
-    getData()
-
-  },[])
+    },[])
   return (
     <header style={{ paddingLeft: 0 ,marginBottom:5 }}>
      <NavBar/>
