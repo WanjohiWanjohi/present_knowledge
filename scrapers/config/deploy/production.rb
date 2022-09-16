@@ -8,7 +8,7 @@
 # server "db.example.com", user: "deploy", roles: %w{db}
 server "staging.sinatra-app.com", :user => "wamuyu", :roles => %{web app}
 
-set :branch, "master"
+set :branch, "api"
 
 
 # role-based syntax

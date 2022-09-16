@@ -8,7 +8,16 @@ set :repo_url, "git@github.com:WanjohiWanjohi/present_knowledge.git"
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, "/var/www/my_app_name"
+set :deploy_to, "/home/wamuyu/present_knowledge"
+
+
+set :linked_files, ["config/secrets.yml"]
+
+
+
+set :ssh_options, { :forward_agent => true }
+
+
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
