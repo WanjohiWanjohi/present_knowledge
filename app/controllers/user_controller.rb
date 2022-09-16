@@ -26,6 +26,7 @@ class UserController < Sinatra::Base
     end
 
     get '/users' do
+      
       users = User.all.order(:name).limit(10)
       puts users
     end

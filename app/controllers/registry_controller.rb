@@ -17,12 +17,14 @@ class RegistryController < Sinatra::Base
     end
 
     get '/registries/:id' do
+      
         product = Registry.find(params[:id]).includes(:registry_item).includes(:product)
         body product.to_json
     end
 
     post '/registries/create' do 
       request.body.rewind  
+      response.headers['Access-Control-Allow-Origin'] = '*'
       data = JSON.parse request.body.read
       #TODO:FIx this
       id = data[:registryName].to_s + data[:registryEvent].to_s 
@@ -30,12 +32,14 @@ class RegistryController < Sinatra::Base
       body r
     end
     post '/registries/add_product'do
+      response.headers['Access-Control-Allow-Origin'] = '*'
       request.body.rewind  
       data = JSON.parse request.body.read
       r = RegistryItem.create(data)
       body r
     end
     delete '/registries/delete/:id' do
+      response.headers['Access-Control-Allow-Origin'] = '*'
       Registry.find(params[:id]).destroy
     end
 end
