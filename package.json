@@ -2,7 +2,7 @@
     "name": "frontend",
     "version": "0.1.0",
     "private": true,
-    "homepage": "https: //WanjohiWanjohi.github.io/present_knowledge",
+    "homepage": "https://WanjohiWanjohi.github.io/present_knowledge",
     "dependencies": {
         "@testing-library/jest-dom": "^5.16.5",
         "@testing-library/react": "^13.4.0",
