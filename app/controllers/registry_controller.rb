@@ -29,6 +29,12 @@ class RegistryController < Sinatra::Base
       id = data[:registryName].to_s + data[:registryEvent].to_s 
       Registry.create(id: id ,name: data[:registryName], event: data[:registryEvent])
     end
+    post '/registries/add/:id'do
+    request.body.rewind  
+    data = JSON.parse request.body.read
+    
+    
+    end
    
 end
   
