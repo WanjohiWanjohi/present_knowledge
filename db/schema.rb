@@ -10,17 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_16_081912) do
-  create_table "product_details", primary_key: "detail_id", id: :string, force: :cascade do |t|
-    t.string "categories"
-    t.integer "price_effective"
-    t.integer "price_full"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "product_id"
-    t.index ["detail_id"], name: "index_product_details_on_detail_id"
-  end
-
+ActiveRecord::Schema[7.0].define(version: 2022_09_08_103614) do
   create_table "products", primary_key: "product_id", id: :string, force: :cascade do |t|
     t.string "product_name"
     t.string "product_description"
@@ -29,7 +19,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_16_081912) do
     t.string "product_image_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "brand"
+    t.integer "registry_id"
     t.index ["product_id"], name: "index_products_on_product_id"
   end
 
@@ -41,12 +31,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_16_081912) do
     t.integer "user_id"
     t.index ["registry_id"], name: "index_registries_on_registry_id"
     t.index ["user_id"], name: "index_registries_on_user_id"
-  end
-
-  create_table "registry_items", force: :cascade do |t|
-    t.integer "item_id", null: false
-    t.string "product_id"
-    t.string "registry_id", null: false
   end
 
   create_table "users", force: :cascade do |t|
