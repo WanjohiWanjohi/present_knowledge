@@ -10,7 +10,6 @@ task :console do
 end
 task :scrape_jumia  do
   require_relative './lib/jumia'
-  require 'pry'
   require 'securerandom'
   jum = JumiaScraper.new
   jum.get_categories
@@ -18,6 +17,7 @@ task :scrape_jumia  do
   jum.product_details.each do |product|
     price_effective = product[:price_effective].to_s.scan(/\d/).join('')
     price_full = product[:price_full].to_s.scan(/\d/).join('')
+    next if product[:product_id] === 'jumia_'
 
     ProductDetail.create(detail_id:SecureRandom.uuid.to_s, 
                          categories:product[:categories], 

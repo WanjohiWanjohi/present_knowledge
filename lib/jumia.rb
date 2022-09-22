@@ -34,34 +34,36 @@ class JumiaScraper
 
     def get_pages(page_url)
         if !page_url.nil?
-            page = Nokogiri::HTML(open(page_url))
-
-            next_page_element = page.xpath("//a[contains(@aria-label, 'Next Page')]")
-            next_page_url = next_page_element.attribute('href').value
-            unless next_page_url.nil?
-                next_page_url  = construct_url(next_page_url)
-                parse_category_products(next_page_url)
-            end
+            next_url  = construct_url(page_url)
+            parse_category_products(next_url)
         end
        
     end
 
     def parse_category_products(url)
-        
-        page = Nokogiri::HTML(open(url))
-        product_cards = page.css(".aim .card .core")
-        product_cards.each do |product_card|
-            product_info = {}
-            product_info[:href] = construct_url(product_card.xpath("//@href")[0].value.to_s)
-            product_info[:categories] = product_card.attributes['data-category']&.value.to_s
-            # # # TODO: Split categories using the /
-            product_info[:product_id] = 'jumia_' + product_card.attributes['data-id']&.value.to_s
+        if !url.nil?
+            page = Nokogiri::HTML(open(url))
+            product_cards = page.css(".aim .card .core")
+            product_cards.each do |product_card|
+                product_info = {}
+                product_info[:href] = construct_url(product_card.xpath("@href").inner_text.to_s)
 
-            product_image_section  = product_card.css('.img-c')
-            product_info[:image_url] = parse_product_image(product_image_section).to_s
-            
-            product_info_section = product_card.css('.info')
-            parse_product_info(product_info_section , product_info)
+                product_info[:categories] = product_card.xpath("@data-category").inner_text.to_s
+                # # # TODO: Split categories using the /
+                product_info[:product_id] = 'jumia_' + product_card.xpath("@data-id").inner_text
+
+                product_image_section  = product_card.css('.img-c')
+                product_info[:image_url] = parse_product_image(product_image_section).to_s
+                
+                product_info_section = product_card.css('.info')
+                parse_product_info(product_info_section , product_info)
+            end
+
+            next_page_element = page.xpath("//a[contains(@aria-label, 'Next Page')]")
+            next_page_url = next_page_element.xpath('@href').inner_text.to_s
+            if !next_page_url.nil?
+                get_pages(next_page_url)
+            end
         end
     end
     
@@ -71,9 +73,9 @@ class JumiaScraper
     end
     
     def parse_product_info(html_section, product_info)
-        product_info[:name] = html_section.at_xpath("//h3/text()")
-        product_info[:price_effective] = html_section.at_xpath("//div[@class='prc']/text()")
-        product_info[:price_full] = html_section.at_xpath("//div[@class='prc']//div[@class='old']/text()")
+        product_info[:name] = html_section.at_xpath("./h3/text()").to_s
+        product_info[:price_effective] = html_section.at_xpath("./div[@class='prc']/text()").to_s
+        product_info[:price_full] = html_section.at_xpath("./div[@class='prc']//div[@class='old']/text()").to_s
         @product_details << product_info
     end
     
