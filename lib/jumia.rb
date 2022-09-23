@@ -69,7 +69,6 @@ class JumiaScraper
     
     def parse_product_image(html_section)
         url = html_section&.children.attribute('data-src')&.value
-       
     end
     
     def parse_product_info(html_section, product_info)

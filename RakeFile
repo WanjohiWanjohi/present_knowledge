@@ -19,16 +19,29 @@ task :scrape_jumia  do
     price_full = product[:price_full].to_s.scan(/\d/).join('')
     next if product[:product_id] === 'jumia_'
 
-    ProductDetail.create(detail_id:SecureRandom.uuid.to_s, 
-                         categories:product[:categories], 
-                        price_effective:price_effective)
+   
     # TODO: Add a buy column on each product with the url to purchase
-    Product.create(product_id: product[:product_id].to_s,
-                   product_name: product[:name].to_s, 
-                   vendor:"Jumia", 
-                   product_image_url: product[:image_url].to_s,
-                   product_url: product[:href].to_s
-                   )
+    existing_prod = Product.find_by(product_id: product[:product_id].to_s)
+    if existing_prod.nil?
+      prod = Product.create(product_id: product[:product_id].to_s,
+                    product_name: product[:name].to_s, 
+                    vendor:"Jumia", 
+                    product_image_url: product[:image_url].to_s,
+                    product_url: product[:href].to_s
+                    )
+
+                    
+    else
+      existing_prod.update(
+        product_name: product[:name].to_s, 
+        product_image_url: product[:image_url].to_s,
+        product_url: product[:href].to_s
+        )
+    end
+    ProductDetail.create(detail_id:SecureRandom.uuid.to_s, 
+      categories:product[:categories], 
+     price_effective:price_effective, product_id:product[:product_id])
+
   end
 
 end
