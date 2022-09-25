@@ -1,7 +1,6 @@
 require "sinatra"
 require "sinatra/cors"
 require 'sinatra/base'
-require 'pry'
 class RegistryController < Sinatra::Base
 
     # Add this line to set the Content-Type header for all responses
