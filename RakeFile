@@ -47,9 +47,7 @@ task :scrape_jumia  do
 end
 task :scrape_kilimall do
   require_relative './lib/kilimall'
-  require 'pry'
   kili = KilimallScraper.new
   kili_content = kili.get_page()
   kili_categories = kili.get_categories(kili_content)
-  binding.pry
   end
